@@ -26,15 +26,14 @@ Welcome to the Trivia Quiz Game! This interactive CLI application tests your kno
   - Run the cells to execute the quiz interactively.
 
 ## Workflow Diagram
-```plantuml
-@startuml
-start
-:Start Quiz;
-:Fetch Questions from API;
-repeat :Display Question;
--> Get User Input;
-:Check Answer;
-repeat while (More Questions?)
-:Display Final Score;
-stop
-@enduml
+```mermaid
+graph TD
+    start([Start Quiz]) --> fetchQuestions[Fetch Questions from API]
+    fetchQuestions --> displayQuestion[Display Question]
+    displayQuestion --> getUserInput[Get User Input]
+    getUserInput --> checkAnswer[Check Answer]
+    checkAnswer --> moreQuestions{More Questions?}
+    moreQuestions -->|Yes| displayQuestion
+    moreQuestions -->|No| displayFinalScore[Display Final Score]
+    displayFinalScore --> stop([End of Quiz])
+```
